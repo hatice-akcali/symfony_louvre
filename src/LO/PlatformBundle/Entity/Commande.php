@@ -72,6 +72,13 @@ class Commande
      */
     private $country;
 
+
+    public function __construct()
+    {
+        // Par défaut, la date de l'annonce est la date d'aujourd'hui
+        $this->dateReservation = new \Datetime();
+    }
+
     /**
      * @var \DateTime
      *
@@ -89,6 +96,8 @@ class Commande
     {
         return $this->id;
     }
+
+
 
     /**
      * Set dateVisited
@@ -193,9 +202,10 @@ class Commande
      *
      * @return Commande
      */
-    public function setCodeCommande($codeCommande)
+    public function setCodeCommande()
     {
-        $this->codeCommande = $codeCommande;
+        $codeCommandeUnique = uniquid();
+        $this->codeCommande = $codeCommandeUnique;
 
         return $this;
     }

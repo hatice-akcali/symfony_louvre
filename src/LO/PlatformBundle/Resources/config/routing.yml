@@ -4,3 +4,6 @@ lo_platform_homepage:
 
 
 
+lo_platform_recapitulatif:
+    path:     /recapitulatif
+    defaults: { _controller: LOPlatformBundle:Billet:recapitulatif}

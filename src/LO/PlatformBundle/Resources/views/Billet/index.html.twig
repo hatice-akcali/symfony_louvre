@@ -11,13 +11,14 @@
 
     <div class="container">
         <div>
-            <img src="{{ asset('./dist/images/banner.jpg') }}" alt="banner"  class="img-responsive"/>
+            <img src="{{ asset('./images/banner.jpg') }}" alt="banner"  class="img-responsive"/>
         </div><br/>
 
         <h1>Billetterie, musée du Louvre </h1><hr />
 
 
         <div class="jumbotron">
+            <form method="POST"  action="{{ path('lo_platform_recapitulatif') }}">
             <h4>#Commander un billet :</h4> <br />
             <div class="row">
                 <div class="col-lg-6">
@@ -109,9 +110,13 @@
                 </div> <!--div col-lg-3-->
 
             </div> <!--div row-->
+            <p><button type="submit">Valider</button></p>
         </div> <!--div Jumbotron -->
 
-        <div class="alert alert-danger">{{ form_rest(form) }}</div>
+        </form>
+
+
+
 
     </div><!-- div container -->
 

@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -64,7 +64,11 @@ class BilletType extends AbstractType
                             'choices' => $this->isDay,
                             'attr' => array('class' =>  'validate')))
 
-                ->add('commande', CommandeType::class);
+                ->add('commande', CommandeType::class)
+
+                ->add('Ajouter', SubmitType::class)
+                ->getForm();
+        ;
     }
     
     /**

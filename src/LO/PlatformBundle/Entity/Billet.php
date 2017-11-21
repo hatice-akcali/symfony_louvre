@@ -29,7 +29,7 @@ class Billet
      *
      * @ORM\Column(name="name", type="string", length=255)
 	 *
-	 *
+	 * @Assert\Length(min=3)
      */
     private $name;
 
@@ -37,6 +37,8 @@ class Billet
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
+     *
+     * @Assert\Length(min=3)
      */
     private $firstname;
 

@@ -15,6 +15,7 @@ use LO\PlatformBundle\Form\CommandeType;
 
 class BilletController extends Controller
 {
+
     public function indexAction(Request $request)
     {
         $billet = new Billet;
@@ -42,6 +43,13 @@ class BilletController extends Controller
     {
         return $this->render('LOPlatformBundle::layout.html.twig');
     }
+
+    public function recapitulatifAction()
+    {
+        return $this->render('LOPlatformBundle:Billet:recapitulatif.html.twig');
+    }
+
+
 }
 
 
