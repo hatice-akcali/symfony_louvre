@@ -1,0 +1,6 @@
+lo_platform_homepage:
+    path:     /
+    defaults: { _controller: LOPlatformBundle:Billet:index }
+
+
+

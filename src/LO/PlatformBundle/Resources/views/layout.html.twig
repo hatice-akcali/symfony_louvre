@@ -1,0 +1,95 @@
+{# src/LO/PlatformBundle/Resources/views/layout.html.twig #}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+
+
+    {%  block stylesheet %}
+        <!-- Bootstrap core CSS -->
+        <link href="{{ asset('./dist/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
+        <!-- CSS -->
+        <link href="{{ asset('./dist/style.css') }}" type="text/css" rel="stylesheet">
+        <!-- jQuery-UI CSS-->
+        <script src="{{ asset('./dist/js/jquery-ui/jquery-ui.css') }}" type="text/css"></script>
+    {% endblock %}
+
+    {% block javascript %}
+        <!-- jQuery-UI -->
+        <script src="{{ asset('./dist/js/jquery-ui/external/jquery/jquery.js') }}" type="text/javascript"></script>
+        <!-- jQuery JS-->
+        <script src="{{ asset('./dist/js/jquery.js') }}" type="text/javascript"></script>
+    {% endblock %}
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <img src="{{ asset('./dist/images/logo.png') }}" alt="Logo louvre">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- Partie principale de la page d'accueil -->
+<main role="main" class="container" style="margin-top:80px;">
+
+    {% block content %}
+
+    {% endblock %}
+
+
+</main><!-- main Fin container -->
+<br />
+
+    {% block javascripts %}
+        <!-- Bootstrap core JavaScript
+         ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{{ asset('./dist/js/jquery.js') }}"></script>
+        <script>window.jQuery || document.write('<script src="{{ asset('./dist/js/jquery.min.js') }}"><\/script>')</script>
+
+        <script src="{{ asset('./dist/js/popper.min.js') }}"></script>
+        <script src="{{ asset('./dist/js/bootstrap.min.js') }}"></script>
+    {% endblock %}
+
+
+</body>
+
+    {% block footer %}
+        <div class="container-fluide">
+            <div class="footer">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer-copyright">
+
+                            <a href="#">Administration</a>
+                            <p>Copyright moi - Année 2017, tous droits réservés</p>
+
+                        </div>	<!-- footer-copyright -->
+                    </div>	<!--col-lg-12 -->
+                </div> <!-- row -->
+            </div>	<!-- footer -->
+        </div> <!-- Container -->
+    {% endblock %}
+
+
+
+
+</html>
+

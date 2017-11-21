@@ -1,0 +1,7 @@
+lo_platform:
+    resource: "@LOPlatformBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

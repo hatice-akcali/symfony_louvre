@@ -1,0 +1,23 @@
+
+
+.footer{
+    background-color: #343a40;
+    text-align: center;
+    color: white;
+    
+}
+
+#acces{
+    font-weight: bold;
+}
+
+#horaire{
+    font-weight: bold;
+}
+
+.footer-copyright{
+    font-familly: Minecraftia;
+    font-weight: 300;
+    color: white;
+    text-align:center;
+}

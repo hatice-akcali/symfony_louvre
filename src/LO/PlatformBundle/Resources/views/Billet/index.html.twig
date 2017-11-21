@@ -1,0 +1,133 @@
+{# src/LO/PlatformBundle/Resources/views/Billet/index.html.twig #}
+
+
+{% extends "LOPlatformBundle::layout.html.twig" %}
+
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div>
+            <img src="{{ asset('./dist/images/banner.jpg') }}" alt="banner"  class="img-responsive"/>
+        </div><br/>
+
+        <h1>Billetterie, musée du Louvre </h1><hr />
+
+
+        <div class="jumbotron">
+            <h4>#Commander un billet :</h4> <br />
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        {{ form_label(formCommande.dateVisited) }}
+                        {{ form_widget(formCommande.dateVisited) }}
+                        {{ form_errors(formCommande.dateVisited) }}
+                    </div> <!--div form-group -->
+                </div><!--div col-lg-3-->
+            </div> <!--div row-->
+
+            <div class="row">
+                 <div class="col-lg-5">
+                    <div class="form-group">
+                        {{ form_label(form.isDay) }}
+                        {{ form_widget(form.isDay) }}
+                        {{ form_errors(form.isDay) }}
+                    </div> <!--div form-group -->
+                 </div><!--div col-lg-4-->
+            </div> <!--div row-->
+
+
+
+            <div class="row">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            {{ form_label(formCommande.numberVisitor) }}
+                            {{ form_widget(formCommande.numberVisitor) }}
+                            {{ form_errors(formCommande.numberVisitor) }}
+                        </div> <!--div form-group -->
+                    </div><!--div col-lg-3-->
+            </div> <!--div row-->
+
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            {{ form_label(formCommande.email) }}
+                            {{ form_widget(formCommande.email) }}
+                            {{ form_errors(formCommande.email) }}
+                        </div> <!--div form-group -->
+                    </div><!--div col-lg-3-->
+                </div> <!--div row-->
+
+        </div> <!--div Jumbotron -->
+
+
+        <div class="jumbotron">
+            <h4>#Visiteur :</h4> <br />
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        {{ form_label(form.firstname) }}
+                        {{ form_widget(form.firstname, {'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(form.firstname) }}
+                    </div> <!--div form-group -->
+                </div><!--div col-lg-3-->
+
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name, {'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(form.name) }}
+                    </div> <!--div form-group -->
+                </div> <!--div col-lg-3-->
+
+                <div class="col-lg-2">
+                    <div class="form-group">
+                        {{ form_label(formCommande.country) }}
+                        {{ form_widget(formCommande.country, {'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(formCommande.country) }}
+                    </div> <!--div form-group -->
+                </div> <!--div col-lg-3-->
+
+
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        {{ form_row(form.birthdate) }}
+                        {{ form_widget(form.birthdate, {'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(form.birthdate) }}
+                    </div> <!--div form-group -->
+                </div> <!--div col-lg-3-->
+
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        {{ form_label(form.reducedPrice) }}
+                        {{ form_widget(form.reducedPrice, {'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(form.reducedPrice) }}
+                    </div> <!--div form-group -->
+                </div> <!--div col-lg-3-->
+
+            </div> <!--div row-->
+        </div> <!--div Jumbotron -->
+
+        <div class="alert alert-danger">{{ form_rest(form) }}</div>
+
+    </div><!-- div container -->
+
+
+
+
+
+
+
+
+
+
+
+
+    <p>  Notre plateforme est un peu vide pour le moment, mais cela viendra !</p>
+
+
+{% endblock %}
+
