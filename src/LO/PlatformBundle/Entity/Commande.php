@@ -2,6 +2,7 @@
 
 namespace LO\PlatformBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -31,23 +32,16 @@ class Commande
      */
     private $dateVisited;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="numberVisitor", type="integer")
-     *
-     * @Assert\GreaterThan(value = 1)
-     */
-    private $numberVisitor;
+
 
     /**
      * @var string
      *
-     * @ORM\Column(name="amountPaid", type="decimal", precision=10, scale=2)
+     * @ORM\Column(name="amountPaid", type="decimal", precision=10, scale=2, nullable=true)
 	 *
 	 * @Assert\GreaterThan(value = 0, message ="Le prix doit être supérieur à 0")
 	 *
-	 * @Assert\NotBlank(message="Le prix est obligatoire")
+	 * @Assert\Currency
      */
     private $amountPaid;
 
@@ -55,29 +49,44 @@ class Commande
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     *
+     * @Assert\Email
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="codeCommande", type="string", length=255, unique=true)
+     * @ORM\Column(name="codeCommande", type="string", length=255, unique=true, nullable=true)
      */
     private $codeCommande;
 
     /**
-     * @var string
+     * @var bool
      *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="isDay", type="boolean")
      */
-    private $country;
+    private $isDay;
+
+    /**
+     * @ORM\OneToMany(targetEntity="LO\PlatformBundle\Entity\Billet" , mappedBy="commande", cascade={"persist"})
+     */
+    private $billets;
 
 
     public function __construct()
     {
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dateReservation = new \Datetime();
+        $this->billets = new ArrayCollection();
     }
+
+    public function addBillet(Billet $billet)
+    {
+        dump($billet);
+        $this->billets->add($billet);
+    }
+
 
     /**
      * @var \DateTime
@@ -95,6 +104,24 @@ class Commande
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBillets()
+    {
+        return $this->billets;
+    }
+
+    /**
+     * @param mixed $billets
+     * @return Commande
+     */
+    public function setBillets($billets)
+    {
+        $this->billets = $billets;
+        return $this;
     }
 
 
@@ -123,29 +150,6 @@ class Commande
         return $this->dateVisited;
     }
 
-    /**
-     * Set numberVisitor
-     *
-     * @param integer $numberVisitor
-     *
-     * @return Commande
-     */
-    public function setNumberVisitor($numberVisitor)
-    {
-        $this->numberVisitor = $numberVisitor;
-
-        return $this;
-    }
-
-    /**
-     * Get numberVisitor
-     *
-     * @return int
-     */
-    public function getNumberVisitor()
-    {
-        return $this->numberVisitor;
-    }
 
     /**
      * Set amountPaid
@@ -221,27 +225,27 @@ class Commande
     }
 
     /**
-     * Set country
+     * Set isDay
      *
-     * @param string $country
+     * @param boolean $isDay
      *
-     * @return Commande
+     * @return Billet
      */
-    public function setCountry($country)
+    public function setIsDay($isDay)
     {
-        $this->country = $country;
+        $this->isDay = $isDay;
 
         return $this;
     }
 
     /**
-     * Get country
+     * Get isDay
      *
-     * @return string
+     * @return bool
      */
-    public function getCountry()
+    public function getIsDay()
     {
-        return $this->country;
+        return $this->isDay;
     }
 
     /**

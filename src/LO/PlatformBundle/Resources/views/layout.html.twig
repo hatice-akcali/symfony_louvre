@@ -9,29 +9,21 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-
-
     {%  block stylesheet %}
         <!-- Bootstrap core CSS -->
         <link href="{{ asset('./css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
         <!-- CSS -->
         <link href="{{ asset('./style.css') }}" type="text/css" rel="stylesheet">
         <!-- jQuery-UI CSS-->
-        <script src="{{ asset('./js/jquery-ui/jquery-ui.css') }}" type="text/css"></script>
-    {% endblock %}
-
-    {% block javascript %}
-        <!-- jQuery-UI -->
-        <script src="{{ asset('./js/jquery-ui/external/jquery/jquery.js') }}" type="text/javascript"></script>
-        <!-- jQuery JS-->
-        <script src="{{ asset('./js/jquery.js') }}" type="text/javascript"></script>
+        <link href="{{ asset('web/js/jquery-ui/jquery-ui.css') }}" type="text/css">
     {% endblock %}
 
 </head>
 
+
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark  fixed-top">
     <img src="{{ asset('./images/logo.png') }}" alt="Logo louvre">
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
@@ -53,23 +45,18 @@
 
     {% endblock %}
 
+    {% block recapitulatif %}
+
+    {% endblock %}
+
 
 </main><!-- main Fin container -->
 <br />
 
-    {% block javascripts %}
-        <!-- Bootstrap core JavaScript
-         ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="{{ asset('./js/jquery.js') }}"></script>
-        <script>window.jQuery || document.write('<script src="{{ asset('./js/jquery.min.js') }}"><\/script>')</script>
-
-        <script src="{{ asset('./js/popper.min.js') }}"></script>
-        <script src="{{ asset('./js/bootstrap.min.js') }}"></script>
-    {% endblock %}
 
 
-</body>
+
+
 
     {% block footer %}
         <div class="container-fluide">
@@ -88,8 +75,19 @@
         </div> <!-- Container -->
     {% endblock %}
 
+    {% block javascripts %}
+        <!-- Bootstrap core JavaScript
+         ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{{ asset('./js/jquery.js') }}"></script>
+        <script>window.jQuery || document.write('<script src="{{ asset('./js/jquery.min.js') }}"><\/script>')</script>
+
+        <script src="{{ asset('./js/popper.min.js') }}"></script>
+        <script src="{{ asset('./js/bootstrap.min.js') }}"></script>
+    {% endblock %}
 
 
+</body>
 
 </html>
 

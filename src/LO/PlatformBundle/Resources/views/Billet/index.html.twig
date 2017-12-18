@@ -18,121 +18,144 @@
 
 
         <div class="jumbotron">
-            <form method="POST"  action="{{ path('lo_platform_recapitulatif') }}">
+
             <h4>#Commander un billet :</h4> <br />
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        {{ form_label(formCommande.dateVisited) }}
-                        {{ form_widget(formCommande.dateVisited) }}
-                        {{ form_errors(formCommande.dateVisited) }}
-                    </div> <!--div form-group -->
-                </div><!--div col-lg-3-->
-            </div> <!--div row-->
+            {{ form_start(formCommande) }}
 
-            <div class="row">
-                 <div class="col-lg-5">
-                    <div class="form-group">
-                        {{ form_label(form.isDay) }}
-                        {{ form_widget(form.isDay) }}
-                        {{ form_errors(form.isDay) }}
-                    </div> <!--div form-group -->
-                 </div><!--div col-lg-4-->
-            </div> <!--div row-->
+            {{ form_row(formCommande.dateVisited) }}
+            {{ form_row(formCommande.email) }}
+            {{ form_row(formCommande.isDay) }}
 
+            <div class="well">
+                {{ form_row(formCommande.billets) }}
+                    <a href="#" id="add_billet" class="btn btn-primary">Ajouter un billet</a>
 
+            </div>
 
-            <div class="row">
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            {{ form_label(formCommande.numberVisitor) }}
-                            {{ form_widget(formCommande.numberVisitor) }}
-                            {{ form_errors(formCommande.numberVisitor) }}
-                        </div> <!--div form-group -->
-                    </div><!--div col-lg-3-->
-            </div> <!--div row-->
+            {{ form_end(formCommande) }}
 
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            {{ form_label(formCommande.email) }}
-                            {{ form_widget(formCommande.email) }}
-                            {{ form_errors(formCommande.email) }}
-                        </div> <!--div form-group -->
-                    </div><!--div col-lg-3-->
-                </div> <!--div row-->
-
-        </div> <!--div Jumbotron -->
-
-
-        <div class="jumbotron">
-            <h4>#Visiteur :</h4> <br />
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="form-group">
-                        {{ form_label(form.firstname) }}
-                        {{ form_widget(form.firstname, {'attr':{'class':'form-control'}}) }}
-                        {{ form_errors(form.firstname) }}
-                    </div> <!--div form-group -->
-                </div><!--div col-lg-3-->
-
-                <div class="col-lg-2">
-                    <div class="form-group">
-                        {{ form_label(form.name) }}
-                        {{ form_widget(form.name, {'attr':{'class':'form-control'}}) }}
-                        {{ form_errors(form.name) }}
-                    </div> <!--div form-group -->
-                </div> <!--div col-lg-3-->
-
-                <div class="col-lg-2">
-                    <div class="form-group">
-                        {{ form_label(formCommande.country) }}
-                        {{ form_widget(formCommande.country, {'attr':{'class':'form-control'}}) }}
-                        {{ form_errors(formCommande.country) }}
-                    </div> <!--div form-group -->
-                </div> <!--div col-lg-3-->
-
-
-                <div class="col-lg-3">
-                    <div class="form-group">
-                        {{ form_row(form.birthdate) }}
-                        {{ form_widget(form.birthdate, {'attr':{'class':'form-control'}}) }}
-                        {{ form_errors(form.birthdate) }}
-                    </div> <!--div form-group -->
-                </div> <!--div col-lg-3-->
-
-                <div class="col-lg-3">
-                    <div class="form-group">
-                        {{ form_label(form.reducedPrice) }}
-                        {{ form_widget(form.reducedPrice, {'attr':{'class':'form-control'}}) }}
-                        {{ form_errors(form.reducedPrice) }}
-                    </div> <!--div form-group -->
-                </div> <!--div col-lg-3-->
-
-            </div> <!--div row-->
-            <p><button type="submit">Valider</button></p>
-        </div> <!--div Jumbotron -->
-
-        </form>
-
-
+    </div>
 
 
     </div><!-- div container -->
 
+  {% endblock %}
 
 
+  {% block javascripts %}
+      {{ parent() }}
+      {# Voici le script en question : #}
+
+      <script type="text/javascript">
+          $(document).ready(function() {
+              // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+
+              var $container = $('div#lo_platformbundle_commande_billets');
+
+              // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+              var index = $container.find(':input').length;
 
 
+              // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+
+              $('#add_billet').click(function(e) {
+
+                  addBillet($container);
+                  e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+
+                  return false;
+
+              });
 
 
+              // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+
+              if (index == 0) {
+
+                  addBillet($container);
+
+              } else {
+
+                  // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
+
+                  $container.children('div').each(function() {
+
+                      addDeleteLink($(this));
+
+                  });
+
+              }
 
 
+              // La fonction qui ajoute un formulaire CategoryType
+
+              function addBillet($container) {
+
+                  // Dans le contenu de l'attribut « data-prototype », on remplace :
+
+                  // - le texte "__name__label__" qu'il contient par le label du champ
+
+                  // - le texte "__name__" qu'il contient par le numéro du champ
+
+                  var template = $container.attr('data-prototype')
+                      .replace(/__name__/g,        index)
+                  ;
 
 
+                  // On crée un objet jquery qui contient ce template
+                  var $prototype = $(template);
 
-    <p>  Notre plateforme est un peu vide pour le moment, mais cela viendra !</p>
+
+                  // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+                  addDeleteLink($prototype);
 
 
-{% endblock %}
+                  // On ajoute le prototype modifié à la fin de la balise <div>
+                  $container.append($prototype);
+
+
+                  // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                  index++;
+              }
+
+
+              // La fonction qui ajoute un lien de suppression d'une catégorie
+
+              function addDeleteLink($prototype) {
+
+                  // Si l'index est à 0, il n'ajoutera pas de billet
+                  if(index == 0){
+                      return;
+                  }
+
+                  // Création du lien
+                  var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+
+                  // Ajout du lien
+
+                  $prototype.append($deleteLink);
+
+
+                  // Ajout du listener sur le clic du lien pour effectivement supprimer la catégorie
+
+                  $deleteLink.click(function(e) {
+
+                      $prototype.remove();
+
+
+                      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+
+                      return false;
+
+                  });
+
+              }
+
+          });
+
+      </script>
+
+  {% endblock %}
+
 

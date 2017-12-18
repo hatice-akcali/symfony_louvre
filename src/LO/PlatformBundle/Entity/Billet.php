@@ -59,11 +59,13 @@ class Billet
     private $reducedPrice;
 
     /**
-     * @var bool
+     * @var string
      *
-     * @ORM\Column(name="isDay", type="boolean")
+     * @ORM\Column(name="country", type="string", length=255)
      */
-    private $isDay;
+    private $country;
+
+
 
 
 
@@ -72,13 +74,15 @@ class Billet
     /**
      * @var Commande
      *
-    * -- Contraintes de validations
-    * @Assert\Valid()
-    * @Assert\Type(type="LO\PlatformBundle\Entity\Commande")
-    *
-    * -- Liaison unidirectionnelle entre Billet et Commande
-    * @ORM\OneToOne(targetEntity="LO\PlatformBundle\Entity\Commande", cascade={"persist", "remove"})
-    */
+     * -- Contraintes de validations
+     * @Assert\Valid()
+     * @Assert\Type(type="LO\PlatformBundle\Entity\Commande")
+     *
+     * -- Liaison unidirectionnelle entre Billet et Commande
+     * @ORM\ManyToOne(targetEntity="LO\PlatformBundle\Entity\Commande", inversedBy="billets", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable = false)
+     *
+     */
     private $commande;
 
     /**
@@ -205,28 +209,32 @@ class Billet
     }
 
     /**
-     * Set isDay
+     * Set country
      *
-     * @param boolean $isDay
+     * @param string $country
      *
-     * @return Billet
+     * @return Commande
      */
-    public function setIsDay($isDay)
+    public function setCountry($country)
     {
-        $this->isDay = $isDay;
+        $this->country = $country;
 
         return $this;
     }
 
     /**
-     * Get isDay
+     * Get country
      *
-     * @return bool
+     * @return string
      */
-    public function getIsDay()
+    public function getCountry()
     {
-        return $this->isDay;
+        return $this->country;
     }
+
+
+
+
 
 
 }

@@ -8,8 +8,8 @@ use LO\PlatformBundle\Form\BilletType;
 use Symfony\Component\HttpFoundation\Request;
 
 use LO\PlatformBundle\Entity\Commande;
-
 use LO\PlatformBundle\Form\CommandeType;
+
 
 
 
@@ -18,38 +18,44 @@ class BilletController extends Controller
 
     public function indexAction(Request $request)
     {
-        $billet = new Billet;
+
         $commande = new Commande;
 
-        $form = $this->get('form.factory')->create(BilletType::class, $billet);
-        $formCommande = $this->get('form.factory')->create(CommandeType::class, $commande);
+            $formCommande = $this->createForm(CommandeType::class, $commande);
+        dump($request);
 
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $em=$this->getDoctrine()->getManager();
-            $em->persist($billet);
-            $em->persist($commande);
-            $em->flush();
+            $formCommande->handleRequest($request);
+
+            if ($formCommande->isSubmitted() && $formCommande->isValid()) {
+                //$test = $billet->getName();
+                $em = $this->getDoctrine()->getManager();
+                foreach($commande->getBillets() as $billet){
+                    $billet->setCommande($commande);
+                }
+                $em->persist($commande);
+                $em->flush();
+
+                return $this->render('LOPlatformBundle:Billet:recapitulatif.html.twig', array('billet' => $billet));
+
+            }
+
+            return $this->render('LOPlatformBundle:Billet:index.html.twig', array(
+                'formCommande' => $formCommande->createView()));
+
         }
 
-        return $this->render('LOPlatformBundle:Billet:index.html.twig', array
-                                  ('form' => $form->createView(),
-                                   'formCommande' => $formCommande->createView()));
+        public
+        function layoutAction()
+        {
+            return $this->render('LOPlatformBundle::layout.html.twig');
+        }
 
+        public
+        function recapitulatifAction()
+        {
+            return $this->render('LOPlatformBundle:Billet:recapitulatif.html.twig');
+        }
     }
 
-    public function layoutAction()
-    {
-        return $this->render('LOPlatformBundle::layout.html.twig');
-    }
-
-    public function recapitulatifAction()
-    {
-        return $this->render('LOPlatformBundle:Billet:recapitulatif.html.twig');
-    }
-
-
-}
 
 

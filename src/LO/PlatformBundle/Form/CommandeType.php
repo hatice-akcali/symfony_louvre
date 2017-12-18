@@ -7,10 +7,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -20,21 +19,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CommandeType extends AbstractType
 {
-    private $country = array(
-                            'France' => 'France',
-                            'Royaumes-Unis' => 'Royaumes-Unis',
-                            'Espagne' => '   Espagne',
-                            'Italie' => 'Italie',
-                            'Portugal' => 'Portugal',
-                            'Allemagne' => 'Allemagne',
-                            'Suisse' => 'Suisse',
-                            'Belgique' => 'Belgique',
-                            'Luxembourg' => 'Luxembourg',
-                            'Europe' => 'Europe',
-                            'Amérique du Nord' => 'Amérique du nord',
-                            'Amérique du Sud' => 'Amérique du sud',
-                            'Afrique' => 'Afrique',
-                            'Asie' => 'Asie');
+    private $isDay = array(
+                        'Journee' => 1,
+                        'Demi-journee' => 0,
+    );
+
 
 
 
@@ -47,30 +36,34 @@ class CommandeType extends AbstractType
                 ->add('dateVisited',  DateType::class, array(
                             'label' => 'Date de réservation',
                             'widget' =>'single_text',
+
                             'required' => true))
 
-                ->add('numberVisitor', IntegerType::class, array(
-                            'label'    => 'Nombre(s) Visiteur(s)',
-                            'attr'=> array('min' => 1 )
-                           ))
 
-                ->add('amountPaid', MoneyType::class, array(
-                            'label' => 'Montant(s) payé(s)'))
+
+
 
                 ->add('email', EmailType::class)
 
-                ->add('codeCommande', TextType::class)
+                ->add('isDay', ChoiceType::class, array(
+                        'label' => 'Type de réservation',
+                        'preferred_choices' => array('Demi-journée à partir de 14h'),
+                        'choices' => $this->isDay,
+                        'attr' => array('class' =>  'validate')))
 
-                ->add('country', ChoiceType::class, array(
-                            'label'    => 'Pays',
-                            'preferred_choices' => array('France'),
-                            'choices' => $this->country,
-                            'attr'=> array('class' => 'validate')))
+                ->add('billets', CollectionType::class,array(
+                            'entry_type' => BilletType::class,
+                            'by_reference' => false,
+                            'entry_options' => array('label' => false),
+                            'allow_add' => true,
+                            'allow_delete' => true))
 
-                ->add('dateReservation', DateTimeType::class, array(
-                            'label' => 'Date de réservation'
-    ));
-
+                ->add('save', SubmitType::class, array(
+                            'attr' => array(
+                            'class' => 'btn btn-secondary btn-lg btn-block'
+                            ),
+                            'label' => 'Valider la commande'))
+                ->getForm();
 
     }
     

@@ -1,7 +1,16 @@
 
 
+.navbar.navbar-dark{
+    background-color: #868e96;
+
+}
+
+#add_billet{
+    margin-top: 10px;
+}
+
 .footer{
-    background-color: #343a40;
+    background-color: #868e96;
     text-align: center;
     color: white;
     
