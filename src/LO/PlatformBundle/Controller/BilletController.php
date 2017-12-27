@@ -19,7 +19,18 @@ class BilletController extends Controller
     public function indexAction(Request $request)
     {
 
-        $commande = new Commande();
+            $session = $request->getSession();
+            if ($session->has('command_id')){   // Si la cession possède la variable commande_id
+
+                $em = $this->getDoctrine()->getManager();   // On récupère l'entityManager
+                $command_id = $session->get("command_id");      // On récupère dans la cession, la variable commande_id
+                $commande = $em->getRepository(Commande ::class)->find($command_id);   // Je demande à l'ententityManager $em, le repository Command
+
+            }
+            else{
+                $commande = new Commande();     // Sinon, on crée une nouvelle Commande
+            }
+
 
             $formCommande = $this->createForm(CommandeType::class, $commande);
         dump($request);
@@ -27,6 +38,7 @@ class BilletController extends Controller
             $formCommande->handleRequest($request);
 
             if ($formCommande->isSubmitted() && $formCommande->isValid()) {
+
                 //$test = $billet->getName();
                 $em = $this->getDoctrine()->getManager();
 

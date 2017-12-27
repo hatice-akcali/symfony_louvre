@@ -41,7 +41,6 @@ class Commande
 	 *
 	 * @Assert\GreaterThan(value = 0, message ="Le prix doit être supérieur à 0")
 	 *
-	 * @Assert\Currency
      */
     private $amountPaid;
 

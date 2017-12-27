@@ -17,18 +17,22 @@
         <h1>Billetterie, musée du Louvre </h1><hr />
 
 
-        <div class="jumbotron">
+        <div >
             <h4>#Commander un billet :</h4> <br />
             {{ form_start(formCommande) }}
+            <div class="jumbotron">
+                {{ form_row(formCommande.dateVisited) }}
+                {{ form_row(formCommande.email) }}
+                {{ form_row(formCommande.isDay) }}
+            </div>
 
-            {{ form_row(formCommande.dateVisited) }}
-            {{ form_row(formCommande.email) }}
-            {{ form_row(formCommande.isDay) }}
 
             <div class="well">
                 {{ form_row(formCommande.billets) }}
                     <a href="#" id="add_billet" class="btn btn-primary">Ajouter un billet</a>
             </div>
+
+
 
             {{ form_end(formCommande) }}
          </div>
@@ -43,9 +47,12 @@
       {# Voici le script en question : #}
 
       <script type="text/javascript">
+
           $(document).ready(function() {
               // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
               var $container = $('div#lo_platformbundle_commande_billets');
+
+
               // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
               var index = $container.find(':input').length;
               // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.

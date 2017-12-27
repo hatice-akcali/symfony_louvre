@@ -54,8 +54,12 @@ class CommandeType extends AbstractType
                 ->add('billets', CollectionType::class,array(
                             'entry_type' => BilletType::class,
                             'by_reference' => false,
-                            'entry_options' => array('label' => false),
+                            'entry_options' => array(
+                                'label' => false,
+                                'attr' => array(
+                                    'class' => "elementsDiv")),
                             'allow_add' => true,
+
                             'allow_delete' => true))
 
                 ->add('save', SubmitType::class, array(

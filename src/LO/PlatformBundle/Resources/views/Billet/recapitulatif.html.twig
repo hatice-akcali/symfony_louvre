@@ -57,12 +57,16 @@
         </div>
     </div>
 
+    <div>
+        <a href="{{ path("lo_platform_homepage") }}" class="btn btn-secondary">Modifier le Commande</a>
+    </div>
+
 
 
 
 
                 <h2>Paiement</h2>
-                <form action="{{ path("lo_platform_paiement") }}" method="POST">
+                <form action="{{ path("lo_platform_paiement") }}" class="formStripe" method="POST">
                     <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_fa11PFXU1wGvQi5XPg52wP7r"
@@ -74,7 +78,9 @@
                             data-zip-code="true"
                             data-allow-remember-me="false"
                             data-email="{{ commande.email  }}"
+                            data-label="Prix de la Commande {{ commande.amountPaid }}€"
                             data-currency="EUR">
+
 
                     </script>
                 </form>
