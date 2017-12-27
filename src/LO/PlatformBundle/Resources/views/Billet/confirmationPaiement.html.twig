@@ -1,0 +1,14 @@
+{# src/LO/PlatformBundle/Resources/views/Billet/confirmationPaiement.html.twig #}
+
+{% extends "LOPlatformBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <p> Merci pour votre Commande, votre paiement a bien été enregistré, merci de votre visite.
+    Une confirmation vous sera envoyée par mail, à cette adresse:</p>
+
+    <div>
+        email :{{ commande.email }}
+    </div>
+
+{%  endblock %}

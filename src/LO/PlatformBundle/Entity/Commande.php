@@ -50,7 +50,7 @@ class Commande
      *
      * @ORM\Column(name="email", type="string", length=255)
      *
-     * @Assert\Email
+     * @Assert\Email()
      */
     private $email;
 
@@ -70,6 +70,8 @@ class Commande
 
     /**
      * @ORM\OneToMany(targetEntity="LO\PlatformBundle\Entity\Billet" , mappedBy="commande", cascade={"persist"})
+     *
+     * @Assert\Valid()
      */
     private $billets;
 
@@ -78,6 +80,7 @@ class Commande
     {
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dateReservation = new \Datetime();
+        $this->codeCommande = uniqid();
         $this->billets = new ArrayCollection();
     }
 

@@ -30,3 +30,15 @@
     color: white;
     text-align:center;
 }
+
+.listeBillets{
+    list-style: none;
+    padding-left: 0px;
+}
+
+.listeBillets li{
+    margin-top: 10px;
+    background-color: #cacaca;
+    padding: 15px;
+}
+

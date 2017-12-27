@@ -29,7 +29,11 @@ class Billet
      *
      * @ORM\Column(name="name", type="string", length=255)
 	 *
-	 * @Assert\Length(min=3)
+	 * @Assert\Length(
+     *              min=3,
+     *              max = 50,
+     *              minMessage = "Votre nom ne peut faire moins de {{ limit }} caractères.",
+     *              maxMessage = "Votre nom ne peut faire plus de {{ limit }} caractères.")
      */
     private $name;
 
@@ -38,7 +42,11 @@ class Billet
      *
      * @ORM\Column(name="firstname", type="string", length=255)
      *
-     * @Assert\Length(min=3)
+     * @Assert\Length(
+     *              min=3,
+     *              max = 50,
+     *              minMessage = "Votre nom ne peut faire moins de {{ limit }} caractères.",
+     *              maxMessage = "Votre nom ne peut faire plus de {{ limit }} caractères.")
      */
     private $firstname;
 
@@ -47,14 +55,15 @@ class Billet
      *
      * @ORM\Column(name="birthdate", type="date")
 	 *
-	 * @Assert\Date()
+	 * @Assert\LessThan("today", message = "merci de vérifier la date de naissance")
      */
     private $birthdate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="reducedPrice", type="string", length=255)
+     * @ORM\Column(name="reducedPrice", type="boolean", options={"default":false})
+     *
      */
     private $reducedPrice;
 

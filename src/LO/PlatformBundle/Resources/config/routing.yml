@@ -3,7 +3,11 @@ lo_platform_homepage:
     defaults: { _controller: LOPlatformBundle:Billet:index }
 
 
-
 lo_platform_recapitulatif:
     path:     /recapitulatif
     defaults: { _controller: LOPlatformBundle:Billet:recapitulatif}
+
+
+lo_platform_paiement:
+    path:     /paiement
+    defaults: { _controller: LOPlatformBundle:Billet:paiement}

@@ -1,4 +1,23 @@
+parameters:
+    trancheAge: # prix exprimé en euros age + prix
+        0: 0
+        4: 8
+        12: 16
+        60: 12
+
+    reducBillet: 10
+
+
+
+
+
 services:
 #    lo_platform.example:
 #        class: LO\PlatformBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    lo_platform.calculBillet:
+        class: LO\PlatformBundle\Services\CalculBillet
+        arguments: ["%trancheAge%", "%reducBillet%"]
+
+

@@ -5,6 +5,7 @@ namespace LO\PlatformBundle\Form;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,7 +19,7 @@ class BilletType extends AbstractType
     private $country = array(
                             'France' => 'France',
                             'Royaumes-Unis' => 'Royaumes-Unis',
-                            'Espagne' => '   Espagne',
+                            'Espagne' => 'Espagne',
                             'Italie' => 'Italie',
                             'Portugal' => 'Portugal',
                             'Allemagne' => 'Allemagne',
@@ -31,13 +32,6 @@ class BilletType extends AbstractType
                             'Afrique' => 'Afrique',
                             'Asie' => 'Asie');
 
-    private $ReducedPrice = array(
-                            'Handicape' =>  'Handicape',
-                            'Etudiant' => 'Etudiant',
-                            'Militaire' => 'Militaire',
-                            'Employe de musee' => 'Employe de musee',
-                            'Service ministère culture' => 'Service ministère culture',
-                            'Sur justificatif' => 'Sur justificatif');
 
 
 
@@ -66,11 +60,10 @@ class BilletType extends AbstractType
                             'choices' => $this->country,
                             'attr'=> array('class' => 'validate')))
 
-                ->add('reducedPrice', ChoiceType::class, array(
-                            'label'    => 'Tarif réduit',
-                            'preferred_choices' => array('Sur justificatif'),
-                            'choices' => $this->ReducedPrice,
-                            'attr' => array('class' => 'validate')))
+                ->add('reducedPrice', CheckboxType::class, array(
+                            'label'    => 'Tarif réduit (Un justificatif vous sera demandé, pour étudiant, militaire, handicapé etc..',
+                            'required' => false,
+                            'value' => 1))
 
                 ->getForm();
         ;

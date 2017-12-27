@@ -4,22 +4,80 @@
 
 {% block title %}{{ parent() }} - Index{% endblock %}
 
-{% block recapitulatif %}
+{% block content %}
 
+    <p>Musée du Louvre <br />
+        Adresse:  Rue de Rivoli, <br />
+        75001 Paris</p>
 
+    <h1>Récapitulatif de votre commande</h1>
 
-        <h1 style="padding-top: 140px;">Test Récapitulatif</h1>
+    <h2>Liste des Billets</h2>
+    <div>
+        <ul class="listeBillets">
+            {% for billet in commande.billets  %}
+                <li>
+                    <div>
+                        Nom :{{ billet.name }}
+                    </div>
+                    <div>
+                    Prénom: {{ billet.firstname }}
+                    </div>
+                        {% if billet.reducedPrice %}
+                            <div>
+                                Tarif réduit: Oui
+                            </div>
+                        {% endif %}
+                    <div>
+                     Date de naissance: {{ billet.birthdate |date("d/m/Y") }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
-
-    <div class="row" >
-        <div class="text-center col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10" id="reservation" >
-            <div class="text-center col-sm-12 form-horizontal" >
-                <h2>Paiement</h2>
-
-            </div>
+    <div>
+        <div>
+            Email: {{ commande.email  }}
+        </div>
+        <div>
+            <p>Type de billet:
+                {% if commande.isDay == false %}
+                    Demi-journée
+                {% else %}
+                    Journee
+                {% endif %}
+            </p>
+        </div>
+        <div>
+            Le prix de la commande: {{ commande.amountPaid }}€
+        </div>
+        <div>
+            Date de visite: {{ commande.dateVisited |date("d/m/Y")  }}
         </div>
     </div>
 
+
+
+
+
+                <h2>Paiement</h2>
+                <form action="{{ path("lo_platform_paiement") }}" method="POST">
+                    <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="pk_test_fa11PFXU1wGvQi5XPg52wP7r"
+                            data-amount="{{ commande.amountPaid * 100}}"
+                            data-name="LeLouvre.com"
+                            data-description="Formulaire de paiement du Louvre"
+                            data-image="{{ asset('./images/logo.png') }}"
+                            data-locale="auto"
+                            data-zip-code="true"
+                            data-allow-remember-me="false"
+                            data-email="{{ commande.email  }}"
+                            data-currency="EUR">
+
+                    </script>
+                </form>
 
 
 
