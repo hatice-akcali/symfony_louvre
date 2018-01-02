@@ -5,9 +5,12 @@ lo_platform_homepage:
 
 lo_platform_recapitulatif:
     path:     /recapitulatif
-    defaults: { _controller: LOPlatformBundle:Billet:recapitulatif}
+    defaults:
+        _controller: LOPlatformBundle:Billet:recapitulatif
+        id: 0
+
 
 
 lo_platform_paiement:
     path:     /paiement
-    defaults: { _controller: LOPlatformBundle:Billet:paiement}
+    defaults: { _controller: LOPlatformBundle:Billet:paiement, id: 0}

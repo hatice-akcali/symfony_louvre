@@ -21,3 +21,31 @@ services:
         arguments: ["%trancheAge%", "%reducBillet%"]
 
 
+    lo_platform.twig.extension.calculbillet:
+        class: LO\PlatformBundle\Services\CalculBilletTwigExtension
+        arguments:
+            - "@lo_platform.calculBillet"
+        tags:
+            -  { name: twig.extension }
+
+
+
+    #
+    lo_platform.services.antispam_extension:
+        class: LO\PlatformBundle\Services\AntispamExtension
+        arguments:
+            - "@lo_platform.antispam"
+            - "%reducBillet%"
+        tags:   #Permet de rajouter une extension, une fonction à twig
+            -  { name: twig.extension }
+
+
+
+
+    lo_platform.antispam:
+        class: LO\PlatformBundle\Services\LOAntispam
+        arguments:
+            - "@mailer"
+            - 50
+        calls:
+            - [ setLocale, [%locale%] ]

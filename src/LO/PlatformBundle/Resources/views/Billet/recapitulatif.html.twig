@@ -29,12 +29,17 @@
                             </div>
                         {% endif %}
                     <div>
+                        Prix du billet: {{ billet|calculPrix() }}
+                    </div>
+                    <div>
                      Date de naissance: {{ billet.birthdate |date("d/m/Y") }}
                     </div>
                 </li>
             {% endfor %}
         </ul>
     </div>
+
+    {{ getPrenom("coucou") }}
 
     <div>
         <div>
@@ -60,6 +65,9 @@
     <div>
         <a href="{{ path("lo_platform_homepage") }}" class="btn btn-secondary">Modifier le Commande</a>
     </div>
+
+
+
 
 
 
