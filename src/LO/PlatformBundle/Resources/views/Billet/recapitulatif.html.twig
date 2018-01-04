@@ -10,90 +10,79 @@
         Adresse:  Rue de Rivoli, <br />
         75001 Paris</p>
 
-    <h1>Récapitulatif de votre commande</h1>
+    <h1>{{ "Récapitulatif de votre commande"|trans }}</h1>
 
-    <h2>Liste des Billets</h2>
+    <h2>{{ "Liste des billets"|trans }}</h2>
     <div>
         <ul class="listeBillets">
             {% for billet in commande.billets  %}
                 <li>
                     <div>
-                        Nom :{{ billet.name }}
+                        {{ "Nom"|trans }} :{{ billet.name }}
                     </div>
                     <div>
-                    Prénom: {{ billet.firstname }}
+                    {{ "Prénom"|trans }}: {{ billet.firstname }}
                     </div>
                         {% if billet.reducedPrice %}
                             <div>
-                                Tarif réduit: Oui
+                                {{ "Tarif réduit: Oui"|trans }}
                             </div>
                         {% endif %}
                     <div>
-                        Prix du billet: {{ billet|calculPrix() }}
+                        {{ "Prix du billet"|trans }}: {{ billet|calculPrix() }}
                     </div>
                     <div>
-                     Date de naissance: {{ billet.birthdate |date("d/m/Y") }}
+                     {{ "Date de naissance"|trans }}: {{ billet.birthdate |date("d/m/Y") }}
                     </div>
                 </li>
             {% endfor %}
         </ul>
     </div>
 
-    {{ getPrenom("coucou") }}
 
     <div>
         <div>
-            Email: {{ commande.email  }}
+            {{ "Email"|trans }}: {{ commande.email  }}
         </div>
         <div>
-            <p>Type de billet:
+            <p>{{ "Type de billet"|trans }}:
                 {% if commande.isDay == false %}
-                    Demi-journée
+                    {{ "Demi-journée"|trans }}
                 {% else %}
-                    Journee
+                    {{ "Journee"|trans }}
                 {% endif %}
             </p>
         </div>
         <div>
-            Le prix de la commande: {{ commande.amountPaid }}€
+            {{ "Prix de la commande"|trans }}: {{ commande.amountPaid }}€
         </div>
         <div>
-            Date de visite: {{ commande.dateVisited |date("d/m/Y")  }}
+            {{ "Date de réservation"|trans }}: {{ commande.dateVisited |date("d/m/Y")  }}
         </div>
     </div>
 
     <div>
-        <a href="{{ path("lo_platform_homepage") }}" class="btn btn-secondary">Modifier le Commande</a>
+        <a href="{{ path("lo_platform_homepage") }}" class="btn btn-secondary">{{ "Modifier la commande"|trans }}</a>
     </div>
 
 
-
-
-
-
-
-
-                <h2>Paiement</h2>
-                <form action="{{ path("lo_platform_paiement") }}" class="formStripe" method="POST">
-                    <script
-                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="pk_test_fa11PFXU1wGvQi5XPg52wP7r"
-                            data-amount="{{ commande.amountPaid * 100}}"
-                            data-name="LeLouvre.com"
-                            data-description="Formulaire de paiement du Louvre"
-                            data-image="{{ asset('./images/logo.png') }}"
-                            data-locale="auto"
-                            data-zip-code="true"
-                            data-allow-remember-me="false"
-                            data-email="{{ commande.email  }}"
-                            data-label="Prix de la Commande {{ commande.amountPaid }}€"
-                            data-currency="EUR">
-
-
-                    </script>
-                </form>
-
-
+    <h2>{{ "Paiement"|trans }}</h2>
+    <form action="{{ path("lo_platform_paiement") }}" class="formStripe" method="POST">
+        <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_fa11PFXU1wGvQi5XPg52wP7r"
+                data-amount="{{ commande.amountPaid * 100}}"
+                data-name="LeLouvre.com"
+                data-description="{{ "Formulaire de paiement du Louvre"|trans }}"
+                data-image="{{ asset('./images/logo.png') }}"
+                data-locale="auto"
+                data-zip-code="true"
+                data-allow-remember-me="false"
+                data-email="{{ commande.email  }}"
+                data-label="{{ "Prix de la commande"|trans }} {{ commande.amountPaid }}€"
+                data-currency="EUR">
+        </script>
+    </form>
 
 
 {% endblock  %}

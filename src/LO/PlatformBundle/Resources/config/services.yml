@@ -7,10 +7,6 @@ parameters:
 
     reducBillet: 10
 
-
-
-
-
 services:
 #    lo_platform.example:
 #        class: LO\PlatformBundle\Example
@@ -29,7 +25,6 @@ services:
             -  { name: twig.extension }
 
 
-
     #
     lo_platform.services.antispam_extension:
         class: LO\PlatformBundle\Services\AntispamExtension
@@ -41,7 +36,6 @@ services:
 
 
 
-
     lo_platform.antispam:
         class: LO\PlatformBundle\Services\LOAntispam
         arguments:
@@ -49,3 +43,17 @@ services:
             - 50
         calls:
             - [ setLocale, [%locale%] ]
+
+
+    lo_platform.validator.limiteBillet:
+        class: LO\PlatformBundle\Validator\LimiteBilletsValidator
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: validator.constraint_validator, alias: limiteBillet_validator}
+
+
+    lo_platform.session.commande:
+        class: LO\PlatformBundle\Services\SessionCommande
+        arguments:
+            - "@request_stack"

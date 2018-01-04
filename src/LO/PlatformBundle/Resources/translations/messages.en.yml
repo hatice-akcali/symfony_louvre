@@ -1,0 +1,44 @@
+# Les informations du formulaire Billet
+Billetterie, musée du Louvre: "Ticket office, Louvre Museum"
+Commander un billet: "Book a ticket"
+Date de naissance: "Birthdate"
+Nom: "Name"
+Prénom: "First name"
+Pays: "Country"
+France: "France"
+Royaumes-Unis: "Great Britain"
+Espagne: "Spain"
+Autres: "Other"
+Tarif réduit (Un justificatif vous sera demandé, pour étudiant, militaire, handicapé etc..: "Reduced price (A proof will be asked for you, for student, military, disabled etc."
+
+
+
+#Les informations du formulairela commande
+Billets: "Tickets"
+Date de réservation: " Reservation date"
+Type de réservation: "Reservation type"
+Journee: "Day"
+Demi-journee: "Half-day"
+Type de billet: "Order type"
+Valider la commande: " Book tickets"
+
+Ajouter un billet: "Add a ticket"
+Modifier la commande: "Amend the order"
+
+#Recapitulatif billet
+Récapitulatif de votre commande: "Order summary"
+Liste des billets: "Tickets list"
+"Tarif réduit: Oui": "Reduced price: Yes"
+Prix du billet: "Price of de tickets"
+
+
+#Stripe
+Prix de la commande: "Price of order"
+
+Paiement: "Payment"
+
+Formulaire de paiement du Louvre: "Louvre payment form"
+
+
+
+

@@ -83,5 +83,10 @@
     padding: 10px;
 }
 
+.has-error .help-block{
+    color: red;
+
+}
+
 
 

@@ -1,0 +1,7 @@
+{% extends "LOPlatformBundle::layout.html.twig" %}
+{% block content %}
+    <div class="container errors">
+        <h1>{% trans %}La Page demandée est introuvable{% endtrans %}</h1>
+        <a href="{{ path("lo_platform_homepage") }}" class="button">{% trans %}Retour à l'accueil{% endtrans %}</a>
+    </div>
+{% endblock %}    

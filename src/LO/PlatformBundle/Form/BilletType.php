@@ -20,17 +20,7 @@ class BilletType extends AbstractType
                             'France' => 'France',
                             'Royaumes-Unis' => 'Royaumes-Unis',
                             'Espagne' => 'Espagne',
-                            'Italie' => 'Italie',
-                            'Portugal' => 'Portugal',
-                            'Allemagne' => 'Allemagne',
-                            'Suisse' => 'Suisse',
-                            'Belgique' => 'Belgique',
-                            'Luxembourg' => 'Luxembourg',
-                            'Europe' => 'Europe',
-                            'Amérique du Nord' => 'Amérique du nord',
-                            'Amérique du Sud' => 'Amérique du sud',
-                            'Afrique' => 'Afrique',
-                            'Asie' => 'Asie');
+                            'Autres' => 'Autres');
 
 
 

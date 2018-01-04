@@ -5,12 +5,14 @@ namespace LO\PlatformBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use LO\PlatformBundle\Validator\LimiteBillets;
 
 /**
  * Commande
  *
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="LO\PlatformBundle\Repository\CommandeRepository")
+ *
  */
 class Commande
 {
@@ -29,6 +31,8 @@ class Commande
      * @ORM\Column(name="dateVisited", type="date")
 	 *
 	 * @Assert\DateTime()
+     *
+     * @LimiteBillets()
      */
     private $dateVisited;
 
@@ -79,7 +83,7 @@ class Commande
     {
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dateReservation = new \Datetime();
-        $this->codeCommande = uniqid();
+        $this->setcodeCommande();
         $this->billets = new ArrayCollection();
     }
 
@@ -210,7 +214,7 @@ class Commande
      */
     public function setCodeCommande()
     {
-        $codeCommandeUnique = uniquid();
+        $codeCommandeUnique = uniqid();
         $this->codeCommande = $codeCommandeUnique;
 
         return $this;

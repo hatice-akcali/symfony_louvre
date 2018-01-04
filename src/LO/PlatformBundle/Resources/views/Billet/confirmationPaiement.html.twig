@@ -7,8 +7,36 @@
     <p> Merci pour votre Commande, votre paiement a bien été enregistré, merci de votre visite.
     Une confirmation vous sera envoyée par mail, à cette adresse:</p>
 
+
     <div>
         email :{{ commande.email }}
+    </div>
+
+    <h2>{{ "Liste des billets"|trans }}</h2>
+    <div>
+        <ul class="listeBillets">
+            {% for billet in commande.billets  %}
+                <li>
+                    <div>
+                        {{ "Nom"|trans }} :{{ billet.name }}
+                    </div>
+                    <div>
+                        {{ "Prénom"|trans }}: {{ billet.firstname }}
+                    </div>
+                    {% if billet.reducedPrice %}
+                        <div>
+                            {{ "Tarif réduit: Oui"|trans }}
+                        </div>
+                    {% endif %}
+                    <div>
+                        {{ "Prix du billet"|trans }}: {{ billet|calculPrix() }}
+                    </div>
+                    <div>
+                        {{ "Date de naissance"|trans }}: {{ billet.birthdate |date("d/m/Y") }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 
 {%  endblock %}

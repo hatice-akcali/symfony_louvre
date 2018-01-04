@@ -11,11 +11,11 @@
 
     {%  block stylesheet %}
         <!-- Bootstrap core CSS -->
-        <link href="{{ asset('./css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ absolute_url(asset('css/bootstrap.min.css')) }}" type="text/css" rel="stylesheet">
         <!-- CSS -->
-        <link href="{{ asset('./style.css') }}" type="text/css" rel="stylesheet">
+        <link href="{{ absolute_url(asset('style.css')) }}" type="text/css" rel="stylesheet">
         <!-- jQuery-UI CSS-->
-        <link href="{{ asset('web/js/jquery-ui/jquery-ui.css') }}" type="text/css">
+        <link href="{{ absolute_url(asset('web/js/jquery-ui/jquery-ui.css')) }}" type="text/css">
     {% endblock %}
 
 </head>
@@ -24,16 +24,22 @@
 <body>
 
 <nav class="navbar navbar-expand-md navbar-dark  fixed-top">
-    <img src="{{ asset('./images/logo.png') }}" alt="Logo louvre">
+    <img src="{{ absolute_url(asset('images/logo.png')) }}" alt="Logo louvre">
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
         </ul>
+        <div class="pull-right">
+            <a href="{{ path("lo_platform_homepage", {"_locale":"fr"}) }}">
+                <img src="{{ absolute_url(asset('images/fr.png')) }}" alt="drapeau Français">
+            </a>
+            <a href="{{ path("lo_platform_homepage", {"_locale":"en"}) }}">
+                <img src="{{ absolute_url(asset('images/gb.png')) }}" alt="drapeau Anglais">
+            </a>
+
+        </div>
     </div>
 </nav>
 
@@ -50,8 +56,6 @@
 
 </main><!-- main Fin container -->
 <br />
-
-
 
 
 
@@ -77,11 +81,9 @@
         <!-- Bootstrap core JavaScript
          ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="{{ asset('./js/jquery.js') }}"></script>
-        <script>window.jQuery || document.write('<script src="{{ asset('./js/jquery.min.js') }}"><\/script>')</script>
-
-        <script src="{{ asset('./js/popper.min.js') }}"></script>
-        <script src="{{ asset('./js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script>
+        <script src="{{ absolute_url(asset('js/bootstrap.min.js')) }}"></script>
     {% endblock %}
 
 

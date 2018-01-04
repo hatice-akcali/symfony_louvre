@@ -14,11 +14,11 @@
             <img src="{{ asset('./images/banner.jpg') }}" alt="banner"  class="img-responsive"/>
         </div><br/>
 
-        <h1>Billetterie, musée du Louvre </h1><hr />
+        <h1>{{ "Billetterie, musée du Louvre"|trans }} </h1><hr />
 
 
         <div >
-            <h4>#Commander un billet :</h4> <br />
+            <h4>{{ "Commander un billet"|trans }}:</h4> <br />
             {{ form_start(formCommande) }}
             <div class="jumbotron">
                 {{ form_row(formCommande.dateVisited) }}
@@ -29,7 +29,7 @@
 
             <div class="well">
                 {{ form_row(formCommande.billets) }}
-                    <a href="#" id="add_billet" class="btn btn-primary">Ajouter un billet</a>
+                    <a href="#" id="add_billet" class="btn btn-primary">{{ "Ajouter un billet"|trans }}</a>
             </div>
 
 

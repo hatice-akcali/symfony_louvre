@@ -40,9 +40,6 @@ class CommandeType extends AbstractType
                             'required' => true))
 
 
-
-
-
                 ->add('email', EmailType::class)
 
                 ->add('isDay', ChoiceType::class, array(
@@ -52,6 +49,7 @@ class CommandeType extends AbstractType
                         'attr' => array('class' =>  'validate')))
 
                 ->add('billets', CollectionType::class,array(
+                            'label' => "Billets",
                             'entry_type' => BilletType::class,
                             'by_reference' => false,
                             'entry_options' => array(

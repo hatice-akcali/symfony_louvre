@@ -8,13 +8,14 @@
 
 namespace LO\PlatformBundle\Services;
 
+use LO\PlatformBundle\Services\CalculBillet;
 
 class CalculBilletTwigExtension extends \Twig_Extension
 {
 
     private $calculBilletService;
 
-    public function __construct(\LO\PlatformBundle\Services\CalculBillet $calculBilletService  )
+    public function __construct(CalculBillet $calculBilletService  )
     {
         $this->calculBilletService = $calculBilletService;
 

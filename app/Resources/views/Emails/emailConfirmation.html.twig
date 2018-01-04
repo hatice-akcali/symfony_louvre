@@ -1,0 +1,64 @@
+
+{% extends "LOPlatformBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <P>Votre email fera foi de billet, veuillez bien le conserver</P>
+
+    <div>
+        <ul class="listeBillets">
+            {% for billet in commande.billets  %}
+                <li>
+                    <div>
+                        Nom :{{ billet.name }}
+                    </div>
+                    <div>
+                        Prénom: {{ billet.firstname }}
+                    </div>
+                    {% if billet.reducedPrice %}
+                        <div>
+                            Tarif réduit: Oui
+                        </div>
+                    {% endif %}
+                    <div>
+                        Prix du billet: {{ billet|calculPrix() }}
+                    </div>
+                    <div>
+                        Date de naissance: {{ billet.birthdate |date("d/m/Y") }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <div>
+        <div>
+            Email: {{ commande.email  }}
+        </div>
+        <div>
+            <p>Type de billet:
+                {% if commande.isDay == false %}
+                    Demi-journée
+                {% else %}
+                    Journee
+                {% endif %}
+            </p>
+        </div>
+        <div>
+            Le prix de la commande: {{ commande.amountPaid }}€
+        </div>
+        <div>
+            Date de visite: {{ commande.dateVisited |date("d/m/Y")  }}
+        </div>
+    </div><br />
+
+    <div>
+        Votre numéro de commande: {{ commande.codeCommande }}
+    </div>
+
+
+{% endblock  %}
+
+
+
