@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use LO\PlatformBundle\Validator\LimiteBillets;
+use LO\PlatformBundle\Validator\JoursFermes;
 
 /**
  * Commande
@@ -33,6 +34,8 @@ class Commande
 	 * @Assert\DateTime()
      *
      * @LimiteBillets()
+     *
+     * @JoursFermes()
      */
     private $dateVisited;
 
@@ -89,7 +92,6 @@ class Commande
 
     public function addBillet(Billet $billet)
     {
-        dump($billet);
         $this->billets->add($billet);
     }
 

@@ -6,6 +6,12 @@
 
 {% block content %}
 
+    <div >
+        {% for message in app.session.flashbag.get('erreur') %}
+            <p class="alert alert-danger" role="alert">{{ message }}</p>
+        {% endfor %}
+    </div>
+
     <p>Musée du Louvre <br />
         Adresse:  Rue de Rivoli, <br />
         75001 Paris</p>

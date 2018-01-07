@@ -14,3 +14,4 @@ lo_platform_recapitulatif:
 lo_platform_paiement:
     path:     /paiement
     defaults: { _controller: LOPlatformBundle:Billet:paiement, id: 0}
+

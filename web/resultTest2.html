@@ -1,0 +1,189 @@
+PHPUnit 5.7.26 by Sebastian Bergmann and contributors.
+
+.                                                                   1 / 1 (100%)
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+            <!-- Bootstrap core CSS -->
+        <link href="http://localhost/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <!-- CSS -->
+        <link href="http://localhost/style.css" type="text/css" rel="stylesheet">
+        <!-- jQuery-UI CSS-->
+        <link href="http://localhost/web/js/jquery-ui/jquery-ui.css" type="text/css">
+    
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark  fixed-top">
+    <img src="http://localhost/images/logo.png" alt="Logo louvre">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <div class="pull-right">
+            <a href="/fr/">
+                <img src="http://localhost/images/fr.png" alt="drapeau Français">
+            </a>
+            <a href="/en/">
+                <img src="http://localhost/images/gb.png" alt="drapeau Anglais">
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+
+<!-- Partie principale de la page d'accueil -->
+<main role="main" class="container" style="margin-top:80px;">
+
+    
+    <p>Musée du Louvre <br />
+        Adresse:  Rue de Rivoli, <br />
+        75001 Paris</p>
+
+    <h1>Récapitulatif de votre commande</h1>
+
+    <h2>Liste des billets</h2>
+    <div>
+        <ul class="listeBillets">
+                            <li>
+                    <div>
+                        Nom :Sandy
+                    </div>
+                    <div>
+                    Prénom: SOUTENANCE
+                    </div>
+                                                    <div>
+                                Tarif réduit: Oui
+                            </div>
+                                            <div>
+                        Prix du billet: 10€
+                    </div>
+                    <div>
+                     Date de naissance: 04/09/1984
+                    </div>
+                </li>
+                    </ul>
+    </div>
+
+
+    <div>
+        <div>
+            Email: toto@gmail.com
+        </div>
+        <div>
+            <p>Type de billet:
+                                    Journee
+                            </p>
+        </div>
+        <div>
+            Prix de la commande: 10€
+        </div>
+        <div>
+            Date de réservation: 25/02/2018
+        </div>
+    </div>
+
+    <div>
+        <a href="/fr/" class="btn btn-secondary">Modifier la commande</a>
+    </div>
+
+
+    <h2>Paiement</h2>
+    <form action="/fr/paiement" class="formStripe" method="POST">
+        <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_fa11PFXU1wGvQi5XPg52wP7r"
+                data-amount="1000"
+                data-name="LeLouvre.com"
+                data-description="Formulaire de paiement du Louvre"
+                data-image="/./images/logo.png"
+                data-locale="auto"
+                data-zip-code="true"
+                data-allow-remember-me="false"
+                data-email="toto@gmail.com"
+                data-label="Prix de la commande 10€"
+                data-currency="EUR">
+        </script>
+    </form>
+
+
+
+
+
+
+</main><!-- main Fin container -->
+<br />
+
+
+
+
+            <div class="container-fluide">
+            <div class="footer">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer-copyright">
+
+                            <a href="#">Administration</a>
+                            <p>Copyright moi - Année 2017, tous droits réservés</p>
+
+                        </div>	<!-- footer-copyright -->
+                    </div>	<!--col-lg-12 -->
+                </div> <!-- row -->
+            </div>	<!-- footer -->
+        </div> <!-- Container -->
+    
+            <!-- Bootstrap core JavaScript
+         ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="/js/jquery.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="http://localhost/js/bootstrap.min.js"></script>
+    
+
+</body>
+
+</html>
+
+lo_platform_recapitulatif
+
+Time: 4.46 seconds, Memory: 27.75MB
+
+[30;42mOK (1 test, 1 assertion)[0m
+Commande.php on line 92:
+LO\PlatformBundle\Entity\Billet {#3152
+  -id: null
+  -name: "Sandy"
+  -firstname: "SOUTENANCE"
+  -birthdate: DateTime @463166425 {#3153
+    date: 1984-09-04 17:20:25.0 UTC (+00:00)
+  }
+  -reducedPrice: true
+  -country: "France"
+  -commande: LO\PlatformBundle\Entity\Commande {#3148
+    -id: null
+    -dateVisited: DateTime @1519579225 {#3151
+      date: 2018-02-25 17:20:25.0 UTC (+00:00)
+    }
+    -amountPaid: 10
+    -email: "toto@gmail.com"
+    -codeCommande: "5a4fb3d9eea4a"
+    -isDay: 1
+    -billets: Doctrine\Common\Collections\ArrayCollection {#3150
+      -elements: []
+    }
+    -dateReservation: DateTime @1515172825 {#3149
+      date: 2018-01-05 17:20:25.0 UTC (+00:00)
+    }
+  }
+}

@@ -23,7 +23,7 @@ class SessionCommande
     }
 
 
-
+    // SOn récupère la commande, on seriale (extraire les valeurs de l'objet, et on les rentre en tableau), et on enregistre
     public function enregistrerSession(Commande $commande ){
         $commandeArray = array();
         $commandeArray['dateVisited'] = $commande->getDateVisited()->format('d/m/Y');
@@ -48,7 +48,7 @@ class SessionCommande
         $this->session->set('commande', $commandeArray);
     }
 
-
+    // On récupère la commande qui est stocké en session, on crée un nouvel objet, puis on hydrate (on désérialise).
     public function recupererSession(){
         $commandeArray = $this->session->get('commande');
 

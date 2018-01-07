@@ -2,6 +2,7 @@ lo_platform:
     resource: "@LOPlatformBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
 
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+accueil:
+    path: /
+    defaults: {_controller: "LOPlatformBundle:Billet:redirigerAccueil"}
+

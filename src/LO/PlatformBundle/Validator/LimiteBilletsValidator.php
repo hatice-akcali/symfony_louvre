@@ -19,8 +19,8 @@ class LimiteBilletsValidator extends ConstraintValidator
 
 
     public function __construct(EntityManager $entityManager){
-        $this->em = $entityManager;
-    }
+    $this->em = $entityManager;
+}
 
     /**
      * Checks if the passed value is valid.

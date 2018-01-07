@@ -7,7 +7,15 @@
 {% block title %}{{ parent() }} - Index{% endblock %}
 
 
+
 {% block content %}
+
+    <div >
+        {% for message in app.session.flashbag.get('erreur') %}
+            <p class="alert alert-danger" role="alert">{{ message }}</p>
+        {% endfor %}
+    </div>
+
 
     <div class="container">
         <div>
@@ -38,6 +46,7 @@
          </div>
 
     </div>
+
 
   {% endblock %}
 
